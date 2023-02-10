@@ -1,5 +1,6 @@
 import pygame
 import lib
+import weapon
 
 class Zone(pygame.sprite.Sprite):
     def __init__(self, x, y, parent):
@@ -34,9 +35,12 @@ class Tower(pygame.sprite.Sprite):
         self.pos = pygame.math.Vector2(x, y)
 
         self.image = pygame.Surface([300, 85])
-        self.image.fill(lib.color.random_color())
+        self.image.fill(lib.color.WHITE)
         self.rect = self.image.get_rect()
         self.rect.center = self.pos
+
+        self.left_slot = weapon.Slot(self.rect.x, self.rect.y + (self.rect.height / 2))
+        self.right_slot = weapon.Slot(self.rect.x + self.rect.width, self.rect.y + (self.rect.height / 2))
     
     def update(self):
         pass
