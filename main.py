@@ -19,6 +19,8 @@ class Game():
             self.update()
 
     def event_handler(self):
+        self.events = pygame.event.get()
+
         for event in self.events:
             if event.type == pygame.QUIT:
                 self.running = False
