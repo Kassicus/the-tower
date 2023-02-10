@@ -1,5 +1,6 @@
 import pygame
 import lib
+import level
 
 pygame.init()
 
@@ -10,7 +11,8 @@ class Game():
 
         self.running = True
         self.clock = pygame.time.Clock()
-        self.events = pygame.event.get()
+
+        self.level = level.Level()
 
     def run(self):
         while self.running:
@@ -19,16 +21,20 @@ class Game():
             self.update()
 
     def event_handler(self):
-        self.events = pygame.event.get()
+        lib.events = pygame.event.get()
 
-        for event in self.events:
+        for event in lib.events:
             if event.type == pygame.QUIT:
                 self.running = False
 
     def draw(self):
-        self.screen.fill(lib.color.WHITE)
+        self.screen.fill(lib.color.BLACK)
+
+        self.level.draw()
 
     def update(self):
+        self.level.update()
+
         pygame.display.update()
         lib.delta_time = self.clock.tick(lib.fps_limit) / 1000
 
